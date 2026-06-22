@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нурафзои Ватан — Центр обучения в Душанбе</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Фақат вазнҳои зарурӣ — камтар download -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+    <!-- Тасвири hero — пешакӣ бор мешавад -->
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=75&w=1600&fm=webp">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --navy:   #0B1F4B;
+            --navy2:  #122460;
+            --gold:   #F5A623;
+            --gold2:  #E8950F;
+            --white:  #FFFFFF;
+            --cream:  #F0F4FF;
+            --gray:   #6B7280;
+            --light:  #E8EEF8;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--white);
+            color: #1a1a2e;
+        }
+
+        /* ─── NAVBAR ─── */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #fff;
+            border-bottom: 1px solid var(--light);
+            padding: 0 24px;
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--navy);
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--gold); }
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #444;
+            text-decoration: none;
+            transition: color .2s;
+        }
+        .nav-links a:hover { color: var(--navy); }
+        .nav-cta {
+            background: var(--gold);
+            color: var(--navy);
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 10px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background .2s, transform .2s;
+        }
+        .nav-cta:hover { background: var(--gold2); transform: translateY(-1px); }
+
+        /* Mobile menu */
+        .burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+        .burger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--navy);
+            transition: all .3s;
+        }
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            background: var(--white);
+            padding: 16px 24px 24px;
+            border-top: 1px solid var(--light);
+            gap: 16px;
+        }
+        .mobile-menu a {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #333;
+            text-decoration: none;
+        }
+        .mobile-menu.open { display: flex; }
+
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta { display: none; }
+            .burger { display: flex; }
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh;
+            background:
+                linear-gradient(135deg, rgba(11,31,75,.92) 0%, rgba(18,36,96,.8) 60%, rgba(245,166,35,.15) 100%),
+                url("https://images.unsplash.com/photo-1509062522246-3755977927d7?q=75&w=1600&fm=webp") center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            transform: translateZ(0); /* GPU layer */
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0; right: 0;
+            height: 80px;
+            background: var(--white);
+            clip-path: ellipse(55% 100% at 50% 100%);
+        }
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            padding-top: 80px;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(245,166,35,.2);
+            border: 1px solid rgba(245,166,35,.4);
+            color: var(--gold);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: 8px 16px;
+            border-radius: 999px;
+            margin-bottom: 28px;
+        }
+        .hero-badge::before { content: '★'; }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 7vw, 5.5rem);
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1.08;
+            margin-bottom: 24px;
+        }
+        .hero h1 em {
+            font-style: normal;
+            color: var(--gold);
+        }
+        .hero p {
+            font-size: clamp(1rem, 2.2vw, 1.2rem);
+            color: rgba(255,255,255,.8);
+            max-width: 560px;
+            line-height: 1.75;
+            margin-bottom: 40px;
+        }
+        .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+        .btn-primary {
+            background: var(--gold);
+            color: var(--navy);
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 16px 36px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: transform .2s, opacity .2s;
+            box-shadow: 0 4px 20px rgba(245,166,35,.4);
+            will-change: transform;
+        }
+        .btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+        .btn-outline {
+            border: 2px solid rgba(255,255,255,.5);
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 14px 34px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: background .2s;
+        }
+        .btn-outline:hover { background: rgba(255,255,255,.1); border-color: white; }
+
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+            margin-top: 64px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,.15);
+            flex-wrap: wrap;
+        }
+        .stat-item { color: var(--white); }
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 900;
+            color: var(--gold);
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,.6);
+            margin-top: 4px;
+        }
+
+        /* ─── SECTION DEFAULTS ─── */
+        section { padding: 100px 24px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .section-eyebrow {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--gold2);
+            margin-bottom: 14px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+        .section-sub {
+            font-size: 1.05rem;
+            color: var(--gray);
+            line-height: 1.7;
+            max-width: 520px;
+        }
+
+        /* ─── ABOUT ─── */
+        #about { background: var(--white); }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        .about-img-wrap { position: relative; }
+        .about-img-wrap img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 24px 60px rgba(11,31,75,.18);
+        }
+        .about-img-badge {
+            position: absolute;
+            bottom: 28px;
+            right: -28px;
+            background: var(--navy);
+            color: white;
+            padding: 18px 24px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 12px 32px rgba(11,31,75,.3);
+        }
+        .about-img-badge .big {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--gold);
+            display: block;
+        }
+        .about-img-badge small { font-size: 0.8rem; opacity: .75; }
+        .about-text p {
+            font-size: 1.05rem;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+        .about-pills { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 36px; }
+        .pill {
+            background: var(--cream);
+            color: var(--navy);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 8px 18px;
+            border-radius: 999px;
+            border: 1px solid var(--light);
+        }
+        .about-counters {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .counter-card {
+            background: var(--cream);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid var(--light);
+        }
+        .counter-card .num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--navy);
+            display: block;
+        }
+        .counter-card .num span { color: var(--gold2); }
+        .counter-card p { font-size: 0.85rem; color: var(--gray); margin-top: 4px; }
+
+        /* ─── WHY US ─── */
+        #why { background: var(--navy); }
+        #why .section-title { color: var(--white); }
+        #why .section-sub { color: rgba(255,255,255,.6); }
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 56px;
+        }
+        .why-card {
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 18px;
+            padding: 36px 28px;
+            transition: background .2s, transform .2s;
+            will-change: transform;
+        }
+        .why-card:hover { background: rgba(255,255,255,.1); transform: translateY(-4px); }
+        .why-icon {
+            font-size: 2.4rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        .why-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+        .why-card p { font-size: 0.9rem; color: rgba(255,255,255,.6); line-height: 1.7; }
+
+        /* ─── COURSES ─── */
+        #courses { background: var(--cream); }
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 56px;
+        }
+        .course-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 32px 28px;
+            border: 1px solid var(--light);
+            box-shadow: 0 2px 12px rgba(11,31,75,.05);
+            transition: transform .2s;
+            position: relative;
+            overflow: hidden;
+            will-change: transform;
+        }
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--navy), var(--gold));
+        }
+        .course-card:hover { transform: translateY(-4px); }
+        .course-emoji { font-size: 2rem; margin-bottom: 16px; display: block; }
+        .course-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+        .course-card p { font-size: 0.9rem; color: var(--gray); line-height: 1.65; }
+        .course-card .badge {
+            display: inline-block;
+            margin-top: 16px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--cream);
+            color: var(--navy);
+            padding: 4px 12px;
+            border-radius: 999px;
+        }
+
+        /* ─── GALLERY ─── */
+        #gallery { background: var(--white); }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-rows: 260px 260px;
+            gap: 16px;
+            margin-top: 48px;
+        }
+        .gallery-grid img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+            transition: transform .3s;
+            will-change: transform;
+        }
+        .gallery-grid img:hover { transform: scale(1.02); }
+        .gallery-grid img:first-child { grid-row: 1 / span 2; }
+
+        /* ─── CONTACT ─── */
+        #contact { background: var(--navy); padding-bottom: 0; }
+        #contact .section-title { color: var(--white); }
+        #contact .section-sub { color: rgba(255,255,255,.65); }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 56px;
+            align-items: start;
+        }
+        .contact-info { color: white; }
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+        .contact-icon {
+            width: 46px;
+            height: 46px;
+            background: rgba(245,166,35,.18);
+            border: 1px solid rgba(245,166,35,.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .contact-item-text strong { display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: .08em; color: rgba(255,255,255,.45); margin-bottom: 4px; }
+        .contact-item-text span { font-size: 1rem; color: var(--white); }
+        .contact-cta {
+            margin-top: 36px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--gold);
+            color: var(--navy);
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 16px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all .25s;
+            box-shadow: 0 4px 20px rgba(245,166,35,.35);
+        }
+        .contact-cta:hover { background: var(--gold2); transform: translateY(-2px); }
+
+        .map-wrap {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,.35);
+            height: 380px;
+        }
+        .map-wrap iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: #060E22;
+            color: rgba(255,255,255,.4);
+            text-align: center;
+            padding: 28px 24px;
+            font-size: 0.85rem;
+        }
+        footer a { color: var(--gold); text-decoration: none; }
+
+        /* ─── WHATSAPP ─── */
+        .wa-btn {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 999;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 24px rgba(37,211,102,.45);
+            transition: all .25s;
+        }
+        .wa-btn:hover { background: #1ebe5d; transform: scale(1.1); box-shadow: 0 10px 32px rgba(37,211,102,.55); }
+        .wa-btn svg { width: 30px; height: 30px; fill: white; }
+
+        /* ─── REVEAL ANIMATION ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .5s ease, transform .5s ease;
+            will-change: opacity, transform;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+            will-change: auto; /* хориҷ пас аз анимация */
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 900px) {
+            .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+            .about-img-badge { right: 12px; }
+            .why-grid, .courses-grid { grid-template-columns: 1fr 1fr; }
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto;
+            }
+            .gallery-grid img:first-child { grid-row: auto; }
+        }
+        @media (max-width: 600px) {
+            section { padding: 72px 20px; }
+            .why-grid, .courses-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr; grid-template-rows: 220px 220px 220px; }
+            .hero-stats { gap: 28px; }
+            .about-counters { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">Нурафзои <span>Ватан</span></a>
+        <ul class="nav-links">
+            <li><a href="#about">О нас</a></li>
+            <li><a href="#courses">Курсы</a></li>
+            <li><a href="#gallery">Галерея</a></li>
+            <li><a href="#contact">Контакты</a></li>
+        </ul>
+        <a href="#contact" class="nav-cta">Записаться →</a>
+        <button class="burger" id="burger" aria-label="Меню">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about" onclick="closeMobile()">О нас</a>
+        <a href="#courses" onclick="closeMobile()">Курсы</a>
+        <a href="#gallery" onclick="closeMobile()">Галерея</a>
+        <a href="#contact" onclick="closeMobile()">Контакты</a>
+        <a href="#contact" class="btn-primary" style="text-align:center" onclick="closeMobile()">Записаться</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-badge">Центр обучения · Душанбе</div>
+        <h1>
+            Нурафзои<br>
+            <em>Ватан</em>
+        </h1>
+        <p>
+            Подготовка к школе, изучение языков и развитие
+            интеллектуальных способностей детей в современной
+            образовательной среде.
+        </p>
+        <div class="hero-btns">
+            <a href="#contact" class="btn-primary">Записаться сейчас</a>
+            <a href="#courses" class="btn-outline">Наши курсы</a>
+        </div>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="stat-number" data-target="500">0</div>
+                <div class="stat-label">Учеников</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="10">0</div>
+                <div class="stat-label">Преподавателей</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="6">0</div>
+                <div class="stat-label">Направлений обучения</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-img-wrap reveal">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=75&w=900&fm=webp" alt="Обучение в центре Нурафзои Ватан" loading="lazy" decoding="async">
+                <div class="about-img-badge">
+                    <span class="big">★ 5.0</span>
+                    <small>Рейтинг родителей</small>
+                </div>
+            </div>
+            <div class="about-text reveal">
+                <span class="section-eyebrow">О нашем центре</span>
+                <h2 class="section-title">Знания, которые открывают двери</h2>
+                <p>
+                    «Нурафзои Ватан» помогает детям успешно подготовиться
+                    к школе, улучшить знания языков и раскрыть свой
+                    потенциал через современные методы обучения.
+                </p>
+                <div class="about-pills">
+                    <span class="pill">Малые группы</span>
+                    <span class="pill">Опытные педагоги</span>
+                    <span class="pill">Современная среда</span>
+                    <span class="pill">Индивидуальный подход</span>
+                </div>
+                <div class="about-counters">
+                    <div class="counter-card">
+                        <span class="num">500<span>+</span></span>
+                        <p>Выпускников</p>
+                    </div>
+                    <div class="counter-card">
+                        <span class="num">10<span>+</span></span>
+                        <p>Преподавателей</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+    <div class="container">
+        <span class="section-eyebrow" style="color: var(--gold);">Почему выбирают нас</span>
+        <h2 class="section-title">Ваш ребёнок заслуживает лучшего</h2>
+        <p class="section-sub" style="color: rgba(255,255,255,.6);">
+            Мы создали среду, где каждый ребёнок чувствует себя уверенно и развивается в своём темпе.
+        </p>
+        <div class="why-grid">
+            <div class="why-card reveal">
+                <span class="why-icon">🎯</span>
+                <h3>Индивидуальный подход</h3>
+                <p>Небольшие группы позволяют уделить каждому ребёнку максимальное внимание и подобрать программу под его уровень.</p>
+            </div>
+            <div class="why-card reveal">
+                <span class="why-icon">👩‍🏫</span>
+                <h3>Опытные педагоги</h3>
+                <p>Наши преподаватели — профессионалы с многолетним опытом работы с детьми разных возрастов и уровней подготовки.</p>
+            </div>
+            <div class="why-card reveal">
+                <span class="why-icon">📈</span>
+                <h3>Результат гарантирован</h3>
+                <p>Уже через несколько месяцев занятий вы увидите заметный прогресс в учёбе и уверенность ребёнка в себе.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- COURSES -->
+<section id="courses">
+    <div class="container">
+        <span class="section-eyebrow">Программы обучения</span>
+        <h2 class="section-title">Наши курсы</h2>
+        <p class="section-sub">
+            Шесть направлений для детей разного возраста и уровня подготовки.
+        </p>
+        <div class="courses-grid">
+            <div class="course-card reveal">
+                <span class="course-emoji">📚</span>
+                <h3>Подготовка к школе</h3>
+                <p>Чтение, письмо, логика и математика. Ребёнок придёт в первый класс уверенным и подготовленным.</p>
+                <span class="badge">5–7 лет</span>
+            </div>
+            <div class="course-card reveal">
+                <span class="course-emoji">🇬🇧</span>
+                <h3>Английский язык</h3>
+                <p>Коммуникативный курс для детей и школьников. Разговорная речь, грамматика и произношение.</p>
+                <span class="badge">6+ лет</span>
+            </div>
+            <div class="course-card reveal">
+                <span class="course-emoji">🇷🇺</span>
+                <h3>Русский язык</h3>
+                <p>Разговорный и академический курс. Развитие письменной и устной речи, подготовка к урокам.</p>
+                <span class="badge">7+ лет</span>
+            </div>
+            <div class="course-card reveal">
+                <span class="course-emoji">🇹🇯</span>
+                <h3>Таджикский язык</h3>
+                <p>Грамматика и развитие речи на родном языке. Чтение классических и современных текстов.</p>
+                <span class="badge">6+ лет</span>
+            </div>
+            <div class="course-card reveal">
+                <span class="course-emoji">➗</span>
+                <h3>Математика</h3>
+                <p>Углублённое изучение предмета и подготовка к школьным экзаменам. Логика и решение задач.</p>
+                <span class="badge">8+ лет</span>
+            </div>
+            <div class="course-card reveal">
+                <span class="course-emoji">💻</span>
+                <h3>Компьютерные курсы</h3>
+                <p>Основы цифровой грамотности, работа с программами и первые шаги в мире технологий.</p>
+                <span class="badge">9+ лет</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+    <div class="container">
+        <span class="section-eyebrow">Наша среда</span>
+        <h2 class="section-title">Галерея центра</h2>
+        <div class="gallery-grid">
+            <img src="https://images.unsplash.com/photo-1503676382389-4809596d5290?q=75&w=900&fm=webp" alt="Занятия в центре" loading="lazy" decoding="async">
+            <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?q=75&w=600&fm=webp" alt="Ученики" loading="lazy" decoding="async">
+            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=75&w=600&fm=webp" alt="Класс" loading="lazy" decoding="async">
+            <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=75&w=600&fm=webp" alt="Урок" loading="lazy" decoding="async">
+            <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=75&w=600&fm=webp" alt="Обучение" loading="lazy" decoding="async">
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="container">
+        <span class="section-eyebrow" style="color: var(--gold);">Свяжитесь с нами</span>
+        <h2 class="section-title">Запишитесь уже сегодня</h2>
+        <p class="section-sub">
+            Начните путь к успешному будущему вместе с нами. Мы ответим на все ваши вопросы.
+        </p>
+        <div class="contact-grid">
+            <div class="contact-info reveal">
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-item-text">
+                        <strong>Телефон</strong>
+                        <span>+992 006 990 528</span>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">💬</div>
+                    <div class="contact-item-text">
+                        <strong>WhatsApp</strong>
+                        <span>+992 006 990 528</span>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-item-text">
+                        <strong>Адрес</strong>
+                        <span>г. Душанбе, Таджикистан</span>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <div class="contact-item-text">
+                        <strong>Email</strong>
+                        <span>info@nurafzoivatan.tj</span>
+                    </div>
+                </div>
+                <a href="https://wa.me/992006990528" target="_blank" class="contact-cta">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.84 11.84 0 0012.05 0C5.5 0 .16 5.35.16 11.92c0 2.1.55 4.16 1.6 5.98L0 24l6.3-1.65a11.86 11.86 0 005.75 1.46h.01c6.55 0 11.89-5.35 11.89-11.92a11.8 11.8 0 00-3.43-8.41z"/></svg>
+                    Написать в WhatsApp
+                </a>
+            </div>
+            <div class="map-wrap reveal">
+                <!-- Реальные координаты центра Душанбе -->
+                <iframe
+                    src="https://maps.google.com/maps?q=38.5598,68.7738&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                    allowfullscreen
+                    loading="lazy"
+                    title="Расположение центра Нурафзои Ватан">
+                </iframe>
+            </div>
+        </div>
+    </div>
+    <footer style="background:transparent; margin-top: 80px; padding: 28px 24px;">
+        <p style="color:rgba(255,255,255,.3); text-align:center; font-size:.85rem;">
+            © 2026 Нурафзои Ватан. Все права защищены. ·
+            <a href="https://www.facebook.com/Nurafzoi.Vatan/" target="_blank" style="color:var(--gold);">Facebook</a>
+        </p>
+    </footer>
+</section>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/992006990528" target="_blank" class="wa-btn" title="Написать в WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20.52 3.48A11.84 11.84 0 0012.05 0C5.5 0 .16 5.35.16 11.92c0 2.1.55 4.16 1.6 5.98L0 24l6.3-1.65a11.86 11.86 0 005.75 1.46h.01c6.55 0 11.89-5.35 11.89-11.92a11.8 11.8 0 00-3.43-8.41z"/>
+    </svg>
+</a>
+
+<script>
+    // Mobile menu
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    burger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    function closeMobile() { mobileMenu.classList.remove('open'); }
+
+    // Scroll reveal — passive observer, ягона callback
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => entry.target.classList.add('visible'), i * 60);
+                revealObs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => revealObs.observe(el));
+
+    // Animated counters — requestAnimationFrame (суст намешавад)
+    function animateCounters() {
+        document.querySelectorAll('[data-target]').forEach(el => {
+            const target = +el.getAttribute('data-target');
+            const suffix = target >= 6 ? '+' : '';
+            const duration = 1400;
+            const start = performance.now();
+            function step(now) {
+                const p = Math.min((now - start) / duration, 1);
+                const ease = 1 - Math.pow(1 - p, 3); // ease-out cubic
+                el.textContent = Math.round(ease * target) + suffix;
+                if (p < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        });
+    }
+
+    const heroObs = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+            setTimeout(animateCounters, 300);
+            heroObs.disconnect();
+        }
+    }, { threshold: 0.25 });
+    heroObs.observe(document.querySelector('.hero'));
+</script>
+</body>
+</html>
