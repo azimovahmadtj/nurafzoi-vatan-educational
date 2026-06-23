@@ -487,6 +487,23 @@ rgba(252,166,81,.35) 100%
             border-radius: 999px;
         }
 
+        /* ─── ТАРИФЫ ВНУТРИ КАРТОЧКИ ─── */
+        .tariffs { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+        .tariff { border-radius: 14px; padding: 14px 16px; border: 1.5px solid transparent; }
+        .tariff-premium { background: linear-gradient(135deg,#fff8e6,#fff3d0); border-color: #FFB000; }
+        .tariff-standard { background: linear-gradient(135deg,#eef4ff,#e0ebff); border-color: #114D83; }
+        .tariff-basic { background: linear-gradient(135deg,#f4f4f8,#ebebf0); border-color: #c0c8d8; }
+        .tariff-label { font-size: 0.78rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+        .tariff-premium .tariff-label { color: #b07800; }
+        .tariff-standard .tariff-label { color: #114D83; }
+        .tariff-basic .tariff-label { color: #555; }
+        .tariff-features { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+        .tariff-features li { font-size: 0.78rem; color: #444; display: flex; align-items: flex-start; gap: 6px; line-height: 1.4; }
+        .tariff-features li::before { content: '✓'; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+        .tariff-premium .tariff-features li::before { color: #FFB000; }
+        .tariff-standard .tariff-features li::before { color: #114D83; }
+        .tariff-basic .tariff-features li::before { color: #888; }
+
         /* ─── GALLERY ─── */
        #gallery {
     background: linear-gradient(
@@ -762,6 +779,253 @@ nav{
     transform:translateY(-8px);
 }
 
+/* ─── КНОПКА ПОДРОБНЕЕ ─── */
+.more-btn {
+    margin-top: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #114D83, #1a6ab3);
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .25s;
+    box-shadow: 0 4px 15px rgba(17,77,131,.25);
+    letter-spacing: .03em;
+}
+.more-btn:hover {
+    background: linear-gradient(135deg, #FFB000, #FF6A00);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255,106,0,.35);
+}
+
+/* ─── SCHOOL PREP SECTION ─── */
+#school-prep {
+    padding: 60px 0;
+    background: linear-gradient(135deg, rgba(17,77,131,.04), rgba(252,166,81,.08));
+}
+.school-prep-card {
+    background: linear-gradient(135deg, #114D83 0%, #0A3A66 60%, #1a6ab3 100%);
+    border-radius: 28px;
+    padding: 56px 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    box-shadow: 0 30px 80px rgba(17,77,131,.25);
+    position: relative;
+    overflow: hidden;
+}
+.school-prep-card::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(255,176,0,.12);
+}
+.school-prep-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,176,0,.2);
+    border: 1px solid rgba(255,176,0,.5);
+    color: #FFB000;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 999px;
+    margin-bottom: 20px;
+}
+.school-prep-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+.school-prep-desc {
+    color: rgba(255,255,255,.75);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 8px;
+}
+.school-prep-btn {
+    margin-top: 28px;
+    background: linear-gradient(135deg, #FFB000, #FF6A00);
+    box-shadow: 0 8px 30px rgba(255,106,0,.4);
+    font-size: 0.95rem;
+    padding: 13px 30px;
+}
+.school-prep-btn:hover {
+    background: white;
+    color: #114D83;
+    box-shadow: 0 12px 40px rgba(255,255,255,.3);
+}
+.school-prep-right {
+    flex-shrink: 0;
+}
+.school-prep-icon {
+    font-size: 7rem;
+    filter: drop-shadow(0 10px 30px rgba(0,0,0,.3));
+    display: block;
+}
+@media (max-width: 768px) {
+    .school-prep-card { flex-direction: column; padding: 36px 28px; text-align: center; }
+    .school-prep-title { font-size: 1.6rem; }
+    .school-prep-right { display: none; }
+}
+
+/* ─── MODAL ─── */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10,20,50,.65);
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+.modal-overlay.active { display: flex; }
+.modal-box {
+    background: #fff;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 680px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 40px 36px;
+    position: relative;
+    box-shadow: 0 40px 100px rgba(0,0,0,.35);
+    animation: modalIn .3s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes modalIn {
+    from { opacity:0; transform: scale(.88) translateY(30px); }
+    to   { opacity:1; transform: scale(1) translateY(0); }
+}
+.modal-close {
+    position: absolute;
+    top: 16px; right: 20px;
+    background: #f0f4ff;
+    border: none;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #555;
+    transition: background .2s;
+}
+.modal-close:hover { background: #e0e8ff; }
+.modal-course-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--navy);
+    margin-bottom: 24px;
+}
+.modal-tariffs {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+}
+.modal-tariff {
+    border-radius: 16px;
+    padding: 16px 14px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all .2s;
+}
+.modal-tariff:hover { transform: translateY(-3px); }
+.modal-tariff.selected { box-shadow: 0 0 0 3px #114D83; }
+.tariff-premium  { background: linear-gradient(135deg,#fff8e6,#fff3d0); border-color:#FFB000; }
+.tariff-standard { background: linear-gradient(135deg,#eef4ff,#e0ebff); border-color:#114D83; }
+.tariff-basic    { background: linear-gradient(135deg,#f4f4f8,#ebebf0); border-color:#c0c8d8; }
+.tariff-label { font-size:.78rem; font-weight:800; letter-spacing:.07em; text-transform:uppercase; margin-bottom:8px; }
+.tariff-premium  .tariff-label { color:#b07800; }
+.tariff-standard .tariff-label { color:#114D83; }
+.tariff-basic    .tariff-label { color:#555; }
+.tariff-features { list-style:none; display:flex; flex-direction:column; gap:4px; }
+.tariff-features li { font-size:.75rem; color:#444; display:flex; align-items:flex-start; gap:5px; line-height:1.4; }
+.tariff-features li::before { content:'✓'; font-weight:700; flex-shrink:0; margin-top:1px; }
+.tariff-premium  .tariff-features li::before { color:#FFB000; }
+.tariff-standard .tariff-features li::before { color:#114D83; }
+.tariff-basic    .tariff-features li::before { color:#888; }
+
+/* Форма */
+.modal-form { border-top: 1px solid #e8eef8; padding-top: 24px; }
+.modal-form-title { font-size:1rem; font-weight:700; color:var(--navy); margin-bottom:16px; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
+.form-input {
+    padding: 12px 16px;
+    border: 1.5px solid #d0daf0;
+    border-radius: 12px;
+    font-size: .9rem;
+    font-family: 'Inter',sans-serif;
+    outline: none;
+    transition: border-color .2s;
+}
+.form-input:focus { border-color: #114D83; }
+.form-selected-tariff {
+    background: #f0f4ff;
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-size: .85rem;
+    font-weight: 600;
+    color: #114D83;
+    margin-bottom: 12px;
+}
+.form-textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid #d0daf0;
+    border-radius: 12px;
+    font-size: .9rem;
+    font-family: 'Inter',sans-serif;
+    resize: vertical;
+    min-height: 90px;
+    outline: none;
+    transition: border-color .2s;
+    margin-bottom: 16px;
+}
+.form-textarea:focus { border-color: #114D83; }
+.form-submit-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg,#25D366,#128C7E);
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all .25s;
+    box-shadow: 0 8px 25px rgba(37,211,102,.35);
+}
+.form-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 35px rgba(37,211,102,.45);
+}
+@media (max-width: 600px) {
+    .modal-box { padding: 28px 20px; }
+    .modal-tariffs { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+}
+
 .course-card{
     transition:.35s;
 }
@@ -997,53 +1261,40 @@ footer{
 </section>
 
 <!-- COURSES -->
+
 <section id="courses">
-    <div class="container">
-        <span class="section-eyebrow">Программы обучения</span>
-        <h2 class="section-title">Наши курсы</h2>
-        <p class="section-sub">
-            Современные образовательные программы для каждого ученика.
-        </p>
-        <div class="courses-grid">
-            <div class="course-card reveal">
-                <span class="course-emoji">📚</span>
-                <h3>Подготовка к школе</h3>
-                <p>Чтение, письмо, логика и математика. Ребёнок придёт в первый класс уверенным и подготовленным.</p>
-                <span class="badge">5–7 лет</span>
-            </div>
-            <div class="course-card reveal">
-                <span class="course-emoji">🇬🇧</span>
-                <h3>Английский язык</h3>
-                <p>Эффективная программа изучения английского языка для всех возрастов, направленная на развитие разговорных навыков, грамматики, произношения и свободного общения.</p>
-                <span class="badge">6+ лет</span>
-            </div>
-            <div class="course-card reveal">
-                <span class="course-emoji">🇷🇺</span>
-                <h3>Русский язык</h3>
-                <p>Разговорный и академический курс. Развитие письменной и устной речи, подготовка к урокам.</p>
-                <span class="badge">7+ лет</span>
-            </div>
-            <div class="course-card reveal">
-                <span class="course-emoji">🇹🇯</span>
-                <h3>Таджикский язык</h3>
-                <p>Грамматика и развитие речи на родном языке. Чтение классических и современных текстов.</p>
-                <span class="badge">6+ лет</span>
-            </div>
-            <div class="course-card reveal">
-                <span class="course-emoji">➗</span>
-                <h3>Математика</h3>
-                <p>Углублённое изучение предмета и подготовка к школьным экзаменам. Логика и решение задач.</p>
-                <span class="badge">8+ лет</span>
-            </div>
-            <div class="course-card reveal">
-                <span class="course-emoji">💻</span>
-                <h3>Компьютерные курсы</h3>
-                <p>Основы цифровой грамотности, работа с программами и первые шаги в мире технологий.</p>
-                <span class="badge">9+ лет</span>
-            </div>
-        </div>
+  <div class="container">
+    <p class="section-label">Программы обучения</p>
+    <h2 class="section-title">Наши курсы</h2>
+    <p class="section-sub">Современные образовательные программы для каждого ученика.</p>
+
+    <div class="courses-grid">
+      <div class="course-card"><div class="course-icon">🇬🇧</div><div class="course-name">Английский язык</div><p class="course-desc">Эффективная программа изучения английского для всех возрастов.</p><button class="more-btn" onclick="openModal('Английский язык')">Подробнее →</button></div>
+      <div class="course-card"><div class="course-icon">🇩🇪</div><div class="course-name">Немецкий язык</div><p class="course-desc">Системное изучение немецкого языка.</p><button class="more-btn" onclick="openModal('Немецкий язык')">Подробнее →</button></div>
+      <div class="course-card"><div class="course-icon">🇨🇳</div><div class="course-name">Китайский язык</div><p class="course-desc">Изучение китайского языка и письменности.</p><button class="more-btn" onclick="openModal('Китайский язык')">Подробнее →</button></div>
+      <div class="course-card"><div class="course-icon">➗</div><div class="course-name">Математика</div><p class="course-desc">Углублённое изучение математики.</p><button class="more-btn" onclick="openModal('Математика')">Подробнее →</button></div>
+      <div class="course-card"><div class="course-icon">🇷🇺</div><div class="course-name">Русский язык</div><p class="course-desc">Разговорный и академический курс.</p><button class="more-btn" onclick="openModal('Русский язык')">Подробнее →</button></div>
     </div>
+  </div>
 </section>
+
+<!-- SCHOOL PREP — специальный блок -->
+<section id="school-prep">
+  <div class="container">
+    <div class="school-prep-card reveal">
+      <div class="school-prep-left">
+        <span class="school-prep-badge">⭐ Специальная программа</span>
+        <h2 class="school-prep-title">Подготовка к школе</h2>
+        <p class="school-prep-desc">Чтение, письмо, логика и математика — всё, что нужно вашему ребёнку для уверенного старта. Занятия в игровой форме развивают внимание, память и творческое мышление.</p>
+        <button class="more-btn school-prep-btn">Подробнее →</button>
+      </div>
+      <div class="school-prep-right">
+        <span class="school-prep-icon">📚</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- GALLERY -->
 <section id="gallery">
@@ -1136,6 +1387,62 @@ footer{
     </footer>
 </section>
 
+<!-- ─── MODAL ─── -->
+<div id="courseModal" class="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-header">
+      <div id="modalCourseName" class="modal-course-title"></div>
+    </div>
+
+    <!-- Тарифы -->
+    <div class="modal-tariffs">
+      <div class="modal-tariff tariff-premium" onclick="selectTariff('Премиум', this)">
+        <div class="tariff-label">👑 Премиум</div>
+        <ul class="tariff-features">
+          <li>В группе 8 человек</li>
+          <li>4 дня уроки в неделю</li>
+          <li>Каждый урок 1,5 часа</li>
+          <li>Книги и принадлежности бесплатно</li>
+        </ul>
+      </div>
+      <div class="modal-tariff tariff-standard" onclick="selectTariff('Стандарт', this)">
+        <div class="tariff-label">⭐ Стандарт</div>
+        <ul class="tariff-features">
+          <li>В группе 12 человек</li>
+          <li>4 дня уроки в неделю</li>
+          <li>Каждый урок 1,5 часа</li>
+          <li>Книги бесплатно</li>
+        </ul>
+      </div>
+      <div class="modal-tariff tariff-basic" onclick="selectTariff('Бейсик', this)">
+        <div class="tariff-label">✦ Бейсик</div>
+        <ul class="tariff-features">
+          <li>В группе 15 человек</li>
+          <li>4 дня уроки в неделю</li>
+          <li>Каждый урок 1,5 часа</li>
+          <li>Книги бесплатно</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Форма заявки -->
+    <div class="modal-form">
+      <h3 class="modal-form-title">📋 Оставить заявку</h3>
+      <div class="form-row">
+        <input type="text" id="formName" placeholder="Ваше имя *" class="form-input" />
+        <input type="number" id="formAge" placeholder="Возраст *" class="form-input" min="4" max="99" />
+      </div>
+      <div class="form-selected-tariff" id="formTariffDisplay">Тариф: не выбран</div>
+      <textarea id="formMessage" placeholder="Сообщение (необязательно)" class="form-textarea"></textarea>
+      <button class="form-submit-btn" onclick="sendToWhatsApp()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.84 11.84 0 0012.05 0C5.5 0 .16 5.35.16 11.92c0 2.1.55 4.16 1.6 5.98L0 24l6.3-1.65a11.86 11.86 0 005.75 1.46h.01c6.55 0 11.89-5.35 11.89-11.92a11.8 11.8 0 00-3.43-8.41z"/></svg>
+        Отправить заявку
+      </button>
+    </div>
+  </div>
+</div>
+
 <!-- WHATSAPP FLOAT -->
 <a href="https://wa.me/992006990528" target="_blank" class="wa-btn" title="Написать в WhatsApp">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1144,6 +1451,57 @@ footer{
 </a>
 
 <script>
+    // ─── MODAL ───
+    let selectedTariff = '';
+    let currentCourse = '';
+
+    function openModal(courseName) {
+        currentCourse = courseName;
+        selectedTariff = '';
+        document.getElementById('modalCourseName').textContent = courseName;
+        document.getElementById('formName').value = '';
+        document.getElementById('formAge').value = '';
+        document.getElementById('formMessage').value = '';
+        document.getElementById('formTariffDisplay').textContent = 'Тариф: не выбран';
+        document.querySelectorAll('.modal-tariff').forEach(el => el.classList.remove('selected'));
+        document.getElementById('courseModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        document.getElementById('courseModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function closeModalOutside(e) {
+        if (e.target === document.getElementById('courseModal')) closeModal();
+    }
+
+    function selectTariff(name, el) {
+        selectedTariff = name;
+        document.querySelectorAll('.modal-tariff').forEach(t => t.classList.remove('selected'));
+        el.classList.add('selected');
+        document.getElementById('formTariffDisplay').textContent = 'Тариф: ' + name;
+    }
+
+    function sendToWhatsApp() {
+        const name = document.getElementById('formName').value.trim();
+        const age  = document.getElementById('formAge').value.trim();
+        const msg  = document.getElementById('formMessage').value.trim();
+
+        if (!name) { alert('Пожалуйста, введите ваше имя'); return; }
+        if (!age)  { alert('Пожалуйста, введите возраст'); return; }
+        if (!selectedTariff) { alert('Пожалуйста, выберите тариф'); return; }
+
+        let text = `Заявка с сайта\n\nКурс: ${currentCourse}\nИмя: ${name}\nВозраст: ${age}\nТариф: ${selectedTariff}`;
+        if (msg) text += `\nСообщение: ${msg}`;
+
+        const phone = '992006990528';
+        const url = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(text);
+        window.open(url, '_blank');
+        closeModal();
+    }
+
     // Mobile menu
     const burger = document.getElementById('burger');
     const mobileMenu = document.getElementById('mobileMenu');
